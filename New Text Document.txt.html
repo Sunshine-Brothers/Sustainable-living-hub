@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainable Living Hub - Eco-Friendly Lifestyle Guide</title>
+    <base target="_self">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@preline/preline@2.0.0/dist/preline.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center" onclick="navigate(event, 'home')">
+                        <img src="https://img.icons8.com/color/48/leaf.png" alt="Leaf logo" class="h-8 w-8">
+                        <span class="ml-2 text-xl font-bold text-primary-600 dark:text-primary-400">Sustainable Living Hub</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-all" onclick="navigate(event, 'waste-less')">Waste Less</a>
+                    <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-all" onclick="navigate(event, 'eco-home')">Eco-Friendly Home</a>
+                    <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-all" onclick="navigate(event, 'conscious-consumption')">Conscious Consumption</a>
+                    <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-all" onclick="navigate(event, 'community')">Community</a>
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:inline"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 focus:outline-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-700" onclick="navigate(event, 'waste-less')">Waste Less</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-700" onclick="navigate(event, 'eco-home')">Eco-Friendly Home</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-700" onclick="navigate(event, 'conscious-consumption')">Conscious Consumption</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-700" onclick="navigate(event, 'community')">Community</a>
+                <div class="px-3 py-2">
+                    <button id="mobile-theme-toggle" class="flex items-center text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+                        <i class="fas fa-moon dark:hidden mr-2"></i>
+                        <i class="fas fa-sun hidden dark:inline mr-2"></i>
+                        Toggle Theme
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative bg-gradient-to-r from-primary-500 to-primary-700 text-white py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="animate-fade-in">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4">Sustainable Living Hub</h1>
+                        <p class="text-xl mb-8">Your guide to eco-friendly living in Pakistan and beyond. Practical tips, local solutions, and community support for a greener lifestyle.</p>
+                        <div class="flex flex-wrap gap-4">
+                            <button class="bg-white text-primary-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium transition-all" onclick="navigate(event, 'waste-less')">Get Started</button>
+                            <button class="border-2 border-white text-white hover:bg-white/10 px-6 py-3 rounded-lg font-medium transition-all" onclick="navigate(event, 'community')">Join Community</button>
+                        </div>
+                    </div>
+                    <div class="animate-fade-in delay-100 hidden md:block">
+                        <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Sustainable living" class="rounded-xl shadow-2xl">
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white dark:from-gray-900 to-transparent"></div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-12 bg-gray-100 dark:bg-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md text-center animate-fade-in delay-200">
+                        <div class="text-primary-600 dark:text-primary-400 text-4xl mb-2">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Reduce Waste</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Learn how to cut your household waste by up to 50% with our practical guides.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md text-center animate-fade-in delay-300">
+                        <div class="text-primary-600 dark:text-primary-400 text-4xl mb-2">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Eco Homes</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Transform your living space with sustainable solutions tailored for Pakistan.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md text-center animate-fade-in delay-400">
+                        <div class="text-primary-600 dark:text-primary-400 text-4xl mb-2">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Shop Smart</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Discover ethical Pakistani brands and make conscious purchasing decisions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Waste Less Section -->
+        <section id="waste-less" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Waste Less</h2>
+                    <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">Practical solutions to reduce waste in your daily life, with a focus on Pakistani households and traditions.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Article 1 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 card-hover">
+                        <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Zero waste kitchen" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Zero Waste Kitchen Guide</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Learn how to minimize food waste with traditional Pakistani preservation techniques and smart shopping.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Food Waste</span>
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Kitchen</span>
+                            </div>
+                            <button class="text-primary-600 dark:text-primary-400 font-medium hover:underline" onclick="showArticle('zero-waste-kitchen')">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Article 2 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 card-hover">
+                        <img src="https://images.unsplash.com/photo-1584971935410-1cdef361c1b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Composting" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Composting in Urban Pakistan</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Space-efficient composting methods that work in apartments and small homes across Pakistani cities.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Composting</span>
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Urban</span>
+                            </div>
+                            <button class="text-primary-600 dark:text-primary-400 font-medium hover:underline" onclick="showArticle('composting-urban')">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Article 3 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 card-hover">
+                        <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Plastic alternatives" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Plastic-Free Shopping in Pakistan</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Discover local markets and alternatives to single-use plastics that align with Pakistani shopping habits.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Plastic Free</span>
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Shopping</span>
+                            </div>
+                            <button class="text-primary-600 dark:text-primary-400 font-medium hover:underline" onclick="showArticle('plastic-free-shopping')">Read More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Eco-Friendly Home Section -->
+        <section id="eco-home" class="py-16 bg-gray-100 dark:bg-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Eco-Friendly Home</h2>
+                    <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">Sustainable solutions for Pakistani homes that combine modern technology with traditional wisdom.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Article 1 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 card-hover">
+                        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Energy efficient home" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Energy Efficiency for Pakistani Homes</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Cost-effective ways to reduce energy consumption while staying comfortable in Pakistan's climate.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Energy</span>
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Savings</span>
+                            </div>
+                            <button class="text-primary-600 dark:text-primary-400 font-medium hover:underline" onclick="showArticle('energy-efficiency')">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Article 2 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 card-hover">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Water conservation" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Water Conservation Techniques</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Traditional and modern methods to conserve water in Pakistani households facing shortages.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Water</span>
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Conservation</span>
+                            </div>
+                            <button class="text-primary-600 dark:text-primary-400 font-medium hover:underline" onclick="showArticle('water-conservation')">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Article 3 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 card-hover">
+                        <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Natural cleaning" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Natural Cleaning Solutions</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Effective cleaning products you can make at home using ingredients common in Pakistani kitchens.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Cleaning</span>
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">DIY</span>
+                            </div>
+                            <button class="text-primary-600 dark:text-primary-400 font-medium hover:underline" onclick="showArticle('natural-cleaning')">Read More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conscious Consumption Section -->
+        <section id="conscious-consumption" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Conscious Consumption</h2>
+                    <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">Make ethical choices that support local economies and reduce environmental impact in Pakistan.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Article 1 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 card-hover">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Ethical fashion" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Ethical Fashion in Pakistan</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Discover Pakistani brands producing sustainable clothing and textiles with fair labor practices.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Fashion</span>
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Ethical</span>
+                            </div>
+                            <button class="text-primary-600 dark:text-primary-400 font-medium hover:underline" onclick="showArticle('ethical-fashion')">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Article 2 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 card-hover">
+                        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Local produce" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Supporting Local Farmers</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">How buying seasonal, local produce benefits Pakistan's economy and reduces carbon footprint.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Food</span>
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Local</span>
+                            </div>
+                            <button class="text-primary-600 dark:text-primary-400 font-medium hover:underline" onclick="showArticle('local-farmers')">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Article 3 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 card-hover">
+                        <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Minimalist lifestyle" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Minimalism Pakistani-Style</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Adapting minimalist principles to Pakistani family life and cultural expectations.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Lifestyle</span>
+                                <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-3 py-1 rounded-full">Minimalism</span>
+                            </div>
+                            <button class="text-primary-600 dark:text-primary-400 font-medium hover:underline" onclick="showArticle('pakistani-minimalism')">Read More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="py-16 bg-primary-600 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Join Our Community</h2>
+                    <p class="max-w-2xl mx-auto">Connect with like-minded individuals across Pakistan who are passionate about sustainable living.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">Interactive Features</h3>
+                        
+                        <div class="mb-6 p-6 bg-primary-700 rounded-xl">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-primary-800 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-exchange-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Waste Swap Network</h4>
+                                    <p>Exchange items you no longer need with others in your city to keep them out of landfills.</p>
+                                </div>
+                            </div>
+                            <button class="mt-2 bg-white text-primary-600 hover:bg-gray-100 px-4 py-2 rounded-lg font-medium transition-all">Join the Network</button>
+                        </div>
+                        
+                        <div class="p-6 bg-primary-700 rounded-xl">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-primary-800 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-seedling text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Sustainability Challenges</h4>
+                                    <p>Participate in monthly challenges to reduce your environmental impact with community support.</p>
+                                </div>
+                            </div>
+                            <button class="mt-2 bg-white text-primary-600 hover:bg-gray-100 px-4 py-2 rounded-lg font-medium transition-all">View Challenges</button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-8 text-gray-800 dark:text-gray-200">
+                        <h3 class="text-2xl font-bold mb-6 text-center">Newsletter Signup</h3>
+                        <p class="mb-6 text-center">Get monthly tips, local event updates, and exclusive content tailored for sustainable living in Pakistan.</p>
+                        
+                        <form id="newsletter-form" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium mb-1">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600">
+                            </div>
+                            <div>
+                                <label for="city" class="block text-sm font-medium mb-1">City</label>
+                                <select id="city" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600">
+                                    <option value="">Select your city</option>
+                                    <option value="karachi">Karachi</option>
+                                    <option value="lahore">Lahore</option>
+                                    <option value="islamabad">Islamabad</option>
+                                    <option value="peshawar">Peshawar</option>
+                                    <option value="quetta">Quetta</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white py-3 rounded-lg font-medium transition-all">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="py-16 bg-gray-100 dark:bg-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6">About Sustainable Living Hub</h2>
+                        <p class="mb-4">Founded in 2023, Sustainable Living Hub is dedicated to making eco-friendly living accessible and practical for people across Pakistan. We recognize the unique challenges faced by Pakistani households in adopting sustainable practices.</p>
+                        <p class="mb-4">Our content is specifically tailored to address:</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>Local availability of sustainable products</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>Cultural considerations in Pakistani households</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>Budget-friendly solutions for families</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 dark:text-primary-400 mt-1 mr-2"></i>
+                                <span>Urban and rural sustainability approaches</span>
+                            </li>
+                        </ul>
+                        <p>All our imagery features Pakistani landscapes, cities, and people to ensure our audience sees themselves reflected in the sustainable solutions we propose.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1176&q=80" alt="Pakistan landscape" class="rounded-lg h-64 w-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1566438480900-0609be27a4be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1194&q=80" alt="Pakistani market" class="rounded-lg h-64 w-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1581349485608-9469926a8e5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1164&q=80" alt="Traditional crafts" class="rounded-lg h-64 w-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Urban Pakistan" class="rounded-lg h-64 w-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <a href="#" class="flex items-center mb-4" onclick="navigate(event, 'home')">
+                        <img src="https://img.icons8.com/color/48/leaf.png" alt="Leaf logo" class="h-8 w-8">
+                        <span class="ml-2 text-xl font-bold text-white">Sustainable Living Hub</span>
+                    </a>
+                    <p class="mb-4">Making sustainable living accessible and practical for Pakistan.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-all"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-bold mb-4">Sections</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition-all" onclick="navigate(event, 'waste-less')">Waste Less</a></li>
+                        <li><a href="#" class="hover:text-white transition-all" onclick="navigate(event, 'eco-home')">Eco-Friendly Home</a></li>
+                        <li><a href="#" class="hover:text-white transition-all" onclick="navigate(event, 'conscious-consumption')">Conscious Consumption</a></li>
+                        <li><a href="#" class="hover:text-white transition-all" onclick="navigate(event, 'community')">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition-all">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-all">Guides</a></li>
+                        <li><a href="#" class="hover:text-white transition-all">Local Businesses</a></li>
+                        <li><a href="#" class="hover:text-white transition-all">Events</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-bold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-2"></i>
+                            <span>info@sustainablelivinghub.pk</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-2"></i>
+                            <span>+92 300 1234567</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                            <span>Islamabad, Pakistan</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p>© 2023 Sustainable Living Hub. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-all">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-all">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Article Modal -->
+    <div id="article-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
+                <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
+                            <div class="flex justify-between items-start">
+                                <h3 id="modal-title" class="text-2xl leading-6 font-bold text-gray-900 dark:text-white mb-4">Article Title</h3>
+                                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div id="modal-content" class="mt-2">
+                                <!-- Article content will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" onclick="closeModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-700 text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation handling
+        function navigate(event, sectionId) {
+            event.preventDefault();
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+            window.scrollTo(0, 0);
+            
+            // Update active nav link
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('text-primary-600', 'dark:text-primary-400');
+            });
+            event.target.classList.add('text-primary-600', 'dark:text-primary-400');
+        }
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        if (mobileThemeToggle) {
+            mobileThemeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        function toggleTheme() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                localStorage.theme = 'light';
+                document.documentElement.classList.remove('dark');
+            } else {
+                localStorage.theme = 'dark';
+                document.documentElement.classList.add('dark');
+            }
+        }
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Newsletter form
+        const newsletterForm = document.getElementById('newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for subscribing to our newsletter!');
+                this.reset();
+            });
+        }
+
+        // Article modal
+        function showArticle(articleId) {
+            const modal = document.getElementById('article-modal');
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content');
+            
+            // In a real implementation, you would fetch the article content based on the ID
+            // For this demo, we'll use placeholder content
+            title.textContent = getArticleTitle(articleId);
+            content.innerHTML = getArticleContent(articleId);
+            
+            modal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('article-modal');
+            modal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        // Helper functions for demo content
+        function getArticleTitle(id) {
+            const titles = {
+                'zero-waste-kitchen': 'Zero Waste Kitchen Guide',
+                'composting-urban': 'Composting in Urban Pakistan',
+                'plastic-free-shopping': 'Plastic-Free Shopping in Pakistan',
+                'energy-efficiency': 'Energy Efficiency for Pakistani Homes',
+                'water-conservation': 'Water Conservation Techniques',
+                'natural-cleaning': 'Natural Cleaning Solutions',
+                'ethical-fashion': 'Ethical Fashion in Pakistan',
+                'local-farmers': 'Supporting Local Farmers',
+                'pakistani-minimalism': 'Minimalism Pakistani-Style'
+            };
+            return titles[id] || 'Article';
+        }
+
+        function getArticleContent(id) {
+            const contents = {
+                'zero-waste-kitchen': `
+                    <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Zero waste kitchen" class="w-full h-64 object-cover rounded-lg mb-4">
+                    <h4 class="font-bold text-lg mb-2">Traditional Pakistani Food Preservation</h4>
+                    <p class="mb-4">Pakistan has a rich tradition of food preservation that aligns perfectly with zero-waste principles. Techniques like sun-drying fruits (aam papad, amrood chips), making pickles (achaar), and fermenting foods (dahi, kanji) have been used for generations to prevent food waste.</p>
+                    <h4 class="font-bold text-lg mb-2">Modern Adaptations for Urban Kitchens</h4>
+                    <p class="mb-4">For urban dwellers with limited space, we recommend:</p>
+                    <ul class="list-disc pl-5 mb-4 space-y-2">
+                        <li>Small countertop compost bins for vegetable scraps</li>
+                        <li>Reusable beeswax wraps instead of plastic cling film</li>
+                        <li>Bulk buying staples from local sabzi mandis to reduce packaging</li>
+                        <li>Repurposing glass jars from pickles and jams for storage</li>
+                    </ul>
+                    <h4 class="font-bold text-lg mb-2">Meal Planning for Pakistani Families</h4>
+                    <p>Learn how to plan meals that use all parts of vegetables and meats common in Pakistani cuisine, reducing waste while maintaining traditional flavors.</p>
+                `,
+                'composting-urban': `
+                    <img src="https://images.unsplash.com/photo-1584971935410-1cdef361c1b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Composting" class="w-full h-64 object-cover rounded-lg mb-4">
+                    <h4 class="font-bold text-lg mb-2">Bokashi Composting for Apartments</h4>
+                    <p class="mb-4">The Japanese Bokashi method is ideal for Pakistani apartments. It uses a special bran to ferment food waste in an airtight container, eliminating odors and producing compost in just 4-6 weeks.</p>
+                    <h4 class="font-bold text-lg mb-2">Community Composting Initiatives</h4>
+                    <p class="mb-4">Several housing societies in Lahore and Islamabad have started community composting programs where residents can drop off their food waste. We're working to expand this model to more cities.</p>
+                    <h4 class="font-bold text-lg mb-2">Vermicomposting with Local Worms</h4>
+                    <p>Pakistan has native earthworm species perfect for vermicomposting. We'll show you how to set up a simple worm bin that can handle typical Pakistani kitchen waste like tea leaves, vegetable peels, and eggshells.</p>
+                `,
+                'plastic-free-shopping': `
+                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Plastic alternatives" class="w-full h-64 object-cover rounded-lg mb-4">
+                    <h4 class="font-bold text-lg mb-2">Traditional Pakistani Alternatives</h4>
+                    <p class="mb-4">Before plastic became ubiquitous, Pakistanis used many sustainable alternatives:</p>
+                    <ul class="list-disc pl-5 mb-4 space-y-2">
+                        <li>Cloth bags (kora kapra) for groceries</li>
+                        <li>Stainless steel tiffins for food storage</li>
+                        <li>Clay pots (matkas) for water cooling</li>
+                        <li>Jute and cane baskets for shopping</li>
+                    </ul>
+                    <h4 class="font-bold text-lg mb-2">Where to Shop Plastic-Free</h4>
+                    <p class="mb-4">We've mapped out markets in major cities where you can buy staples without plastic packaging. Many local kiryana stores are happy to use your containers if you ask politely.</p>
+                    <h4 class="font-bold text-lg mb-2">DIY Solutions</h4>
+                    <p>Learn how to make your own reusable produce bags from old dupattas and sew simple cloth covers for leftover food instead of using cling film.</p>
+                `
+            };
+            
+            return contents[id] || `
+                <p>This article is coming soon. Check back later for more sustainable living tips tailored for Pakistan!</p>
+                <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Coming soon" class="w-full h-64 object-cover rounded-lg mt-4">
+            `;
+        }
+
+        // Initialize - show home section
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('home').classList.remove('hidden');
+            
+            // Check for saved theme preference
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</body>
+</html>
